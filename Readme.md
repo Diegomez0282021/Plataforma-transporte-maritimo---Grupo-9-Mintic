@@ -4,7 +4,7 @@
 
 - You choose who can access to the platform, configure the different users and their permission in the differents modules. Also you can see the history of the merchandise travel, list of the trips per day, see states of the despatch orders, create, update and delete all of these.
 
-- You will get all the automatic invoices that each travel generates,  besides accept or not order of a external customer, setup the amount in your currency of each trip.
+- You will get all the automatic invoices that each travel generates,  besides accept or not orders of a external customer, setup the amount in your currency of each trip.
 # Editor.md
 
 # Maritime transport platform
