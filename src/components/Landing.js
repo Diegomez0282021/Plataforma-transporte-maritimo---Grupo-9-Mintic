@@ -8,7 +8,7 @@ export default function Landing() {
                 <div className="col-md-8">
                     <div className="intro">
                         <h2>¡Bienvenidos!</h2>
-                        <p className="text-start">Nuestra empresa se encarga de transportar mercancías por vía fluvial. Contamos con un buen numero de embarcaciones y transportamos tus contenedores al puerto que mas te convenga.<br/>Regístrate para poder disfrutar de todos nuestros servicios.</p><a className="btn btn-primary" role="button" href="register.html">Registrarse</a>
+                        <p className="text-start">Nuestra empresa se encarga de transportar mercancías por vía fluvial. Contamos con un buen numero de embarcaciones y transportamos tus contenedores al puerto que mas te convenga.<br/>Regístrate para poder disfrutar de todos nuestros servicios.</p><a className="btn btn-primary" role="button" href="/register">Registrarse</a>
                     </div>
                 </div>
                 <div className="col-sm-4">
