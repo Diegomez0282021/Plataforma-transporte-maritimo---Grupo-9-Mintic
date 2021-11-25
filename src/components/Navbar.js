@@ -1,14 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-
 export default function Navbar() {
     return (
         <nav className="navbar navbar-light navbar-expand-md navigation-clean-button">
         <div className="container"><img src="assets/img/logo.png" width="70" alt="Logo"/><Link className="navbar-brand" to="/">Compañia Transnaval S.A.S.</Link><button data-bs-toggle="collapse" className="navbar-toggler" data-bs-target="#navcol-1"><span className="visually-hidden">Toggle navigation</span><span className="navbar-toggler-icon"></span></button>
             <div className="collapse navbar-collapse" id="navcol-1">
                 <ul className="navbar-nav me-auto">
-                    <li className="nav-item"><Link className="nav-link" to="/generar-orden">Generar Orden</Link></li>
+
+                    <li className="nav-item"><Link className="nav-link" to="/orden">Generar Orden</Link></li>
                     <li className="nav-item"><Link className="nav-link" to="/historial">Historial</Link></li>
                     <li className="nav-item"><Link className="nav-link" to="/consultar">Consultar</Link></li>
                     <li className="nav-item"></li>
