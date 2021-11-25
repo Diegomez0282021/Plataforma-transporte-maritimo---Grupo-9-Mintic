@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import ConfigurarValorMilla from './components/ConfigurarValorMilla';
+import OrdenesDia from './components/ordenes-del-dia';
 import {BrowserRouter as Router, Routes, Route,Link} from 'react-router-dom'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
         <Route path='/configurar-valor-milla' element={<ConfigurarValorMilla/>} />
+        <Route path='/ordenes-dia' element={<OrdenesDia/>} />
         </Routes>
         <Footer />
         
