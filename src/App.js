@@ -9,7 +9,8 @@ function App() {
     <div>
       <Navbar />
       <Landing />
-      <Footer />
+      <Footer />  
+   
     </div>
   );
 }
