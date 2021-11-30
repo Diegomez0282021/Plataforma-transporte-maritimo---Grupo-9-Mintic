@@ -8,7 +8,6 @@ function Login() {
 
     const onSubmit = (data) =>{
         console.log(data)       
-        data.preventDefault();
     }
     return (
     <section className="login-clean">
