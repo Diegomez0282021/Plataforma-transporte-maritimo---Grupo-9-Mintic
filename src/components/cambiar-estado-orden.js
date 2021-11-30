@@ -1,12 +1,16 @@
 import React from 'react'
 
+
+const guardar = () =>{
+    return <h1>Guardado!</h1>
+}
 export default function cambiarEstadoOrden() {
     return (
     <div>
-        <section class="contact-clean">
-            <h1 class="text-center">Cambiar estado de ordenes</h1>
-            <div class="table-responsive" style={{margintop: '30px'}}>
-                <table class="table">
+        <section classNameName="contact-clean">
+            <h1 className="text-center">Cambiar estado de ordenes</h1>
+            <div className="table-responsive" style={{margintop: '30px'}}>
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Codigo</th>
@@ -54,7 +58,10 @@ export default function cambiarEstadoOrden() {
                     </tbody>
                 </table>
             </div>
-            <div class="text-center"><button class="btn btn-primary" type="button">GUARDAR CAMBIOS</button></div>
+            <div className="buttons">
+                <button className="btn btn-primary" type="button" onClick={guardar} >GUARDAR CAMBIOS</button>             
+                <button className="btn btn-danger" type="button" >ELIMINAR CAMBIOS</button>
+             </div>
         </section>
     </div>
     )
