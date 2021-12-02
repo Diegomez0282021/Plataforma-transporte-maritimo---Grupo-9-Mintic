@@ -1,13 +1,22 @@
-import React from 'react'
+import React from 'react';
+import {useForm} from 'react-hook-form';
 
-export default function consultar() {
+export default function Consultar() {
+
+    const {register,handleSubmit,formState:{errors}} = useForm();
+
+    const onSubmit = (data) =>{
+        console.log(data)       
+    }
+
     return (
         <section className="contact-clean">
         <h1 className="text-center">Consultar orden de despacho</h1>
-        <form className="search-form">
+        <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="input-group"><span className="input-group-text"><i className="fa fa-search"></i>
-            </span><input className="form-control" type="text" placeholder="Codigo" name="codigo"/>
-            <button className="btn btn-light" type="button">Buscar</button></div>
+            </span><input className="form-control" type="number" placeholder="Codigo" name="codigo" {...register("codigo",{required:true})}/>
+            <button className="btn btn-light" type="submit">Buscar</button></div>
+            {errors.codigo && errors.codigo.type === "required" &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
         </form>
         <div className="table-responsive">
             <table className="table">
