@@ -1,12 +1,20 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {useForm} from 'react-hook-form';
 
-export default function Consultar() {
+export default function Consultar({informacion}) {
+    const [datos,setDatos]=useState([])
 
     const {register,handleSubmit,formState:{errors}} = useForm();
 
     const onSubmit = (data) =>{
-        console.log(data)       
+        let datos1=informacion.filter(e=>e.id_orden===parseInt(data.codigo))
+        if (datos1){
+            setDatos(...datos1);
+        }
+        else{
+            setDatos(...[])
+        }
+        
     }
 
     return (
@@ -16,7 +24,9 @@ export default function Consultar() {
             <div className="input-group"><span className="input-group-text"><i className="fa fa-search"></i>
             </span><input className="form-control" type="number" placeholder="Codigo" name="codigo" {...register("codigo",{required:true})}/>
             <button className="btn btn-light" type="submit">Buscar</button></div>
-            {errors.codigo && errors.codigo.type === "required" &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
+            {errors.codigo &&errors.codigo.type==="required" && <span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
+            {datos===undefined && <span className="text-danger text-small d-block mb-2">No se encontro el codigo</span>}
+
         </form>
         <div className="table-responsive">
             <table className="table">
@@ -32,15 +42,20 @@ export default function Consultar() {
                     </tr>
                 </thead>
                 <tbody>
+        
+                    {datos && 
                     <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 3</td>
-                        <td>Cell 4</td>
-                        <td>Cell 5</td>
-                        <td>Cell 6</td>
-                        <td>Cell 6</td>
+                    <td>{datos.id_orden}</td>
+                    <td>{datos.nombre}</td>
+                    <td>{datos.descripcion}</td>
+                    <td>{datos.dimensiones}</td>
+                    <td>{datos.origen}</td>
+                    <td>{datos.destino}</td>
+                    <td>{datos.estado}</td>
                     </tr>
+                    }
+                    
+
                 </tbody>
             </table>
         </div>
