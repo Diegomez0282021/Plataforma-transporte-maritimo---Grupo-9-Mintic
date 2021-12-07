@@ -3,10 +3,10 @@ import React from 'react'
 export default function ordenesDia() {
     return (
         <div>
-            <section class="contact-clean">
-                    <h1 class="text-center">Ordenes del día</h1>
-                    <div class="table-responsive" style={{margintop: '30px'}}>
-                    <table class="table">
+            <section className="contact-clean">
+                    <h1 className="text-center">Ordenes del día</h1>
+                    <div className="table-responsive" style={{margintop: '30px'}}>
+                    <table className="table">
                     <thead>
                         <tr>
                             <th>Codigo</th>

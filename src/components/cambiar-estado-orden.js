@@ -7,7 +7,7 @@ const guardar = () =>{
 export default function cambiarEstadoOrden() {
     return (
     <div>
-        <section classNameName="contact-clean">
+        <section className="contact-clean">
             <h1 className="text-center">Cambiar estado de ordenes</h1>
             <div className="table-responsive" style={{margintop: '30px'}}>
                 <table className="table">
