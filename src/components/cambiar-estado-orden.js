@@ -4,7 +4,7 @@ import React from 'react'
 const guardar = () =>{
     return <h1>Guardado!</h1>
 }
-export default function cambiarEstadoOrden() {
+export default function cambiarEstadoOrden({data}) {
     return (
     <div>
         <section classNameName="contact-clean">
@@ -23,38 +23,51 @@ export default function cambiarEstadoOrden() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Cell 1</td>
-                            <td>Cell 2</td>
-                            <td>Cell 3</td>
-                            <td>Cell 4</td>
-                            <td>Cell 5</td>
-                            <td>Cell 6</td>
+                        {data.map(e=>(
+                            <tr>
+                            <td>{e.id_orden}</td>
+                            <td>{e.nombre}</td>
+                            <td>{e.descripcion}</td>
+                            <td>{e.dimensiones}</td>
+                            <td>{e.origen}</td>
+                            <td>{e.destino}</td>
                             <td>&nbsp;<select>
-                                    <optgroup label="opciones">
-                                        <option value="Pendiente a despacho" selected="">Pendiente a despacho</option>
-                                        <option value="Despachada">Despachada</option>
-                                        <option value="Finalizada">Finalizada</option>
-                                        <option value="Cancelada">Cancelada</option>
-                                    </optgroup>
+                            {e.estado==="Pendiente a despacho"&& 
+                                <optgroup label="opciones">
+                                    <option value="Pendiente a despacho" selected>Pendiente a despacho</option>
+                                    <option value="Despachada">Despachada</option>
+                                    <option value="Finalizada">Finalizada</option>
+                                    <option value="Cancelada">Cancelada</option>
+                                </optgroup>
+                            }
+                            {e.estado ==="Despachada" &&
+                            <optgroup label="opciones">
+                                <option value="Pendiente a despacho">Pendiente a despacho</option>
+                                <option value="Despachada" selected>Despachada</option>
+                                <option value="Finalizada">Finalizada</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </optgroup>
+                            }
+                            {e.estado ==="Finalizada" &&
+                            <optgroup label="opciones">
+                                <option value="Pendiente a despacho">Pendiente a despacho</option>
+                                <option value="Despachada">Despachada</option>
+                                <option value="Finalizada" selected>Finalizada</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </optgroup>
+                            }
+                            {e.estado ==="Cancelada" &&
+                            <optgroup label="opciones">
+                                <option value="Pendiente a despacho">Pendiente a despacho</option>
+                                <option value="Despachada" >Despachada</option>
+                                <option value="Finalizada">Finalizada</option>
+                                <option value="Cancelada" selected>Cancelada</option>
+                            </optgroup>
+                            }
                                 </select></td>
                         </tr>
-                        <tr>
-                            <td>Cell 1</td>
-                            <td>Cell 2</td>
-                            <td>Cell 3</td>
-                            <td>Cell 4</td>
-                            <td>Cell 5</td>
-                            <td>Cell 6</td>
-                            <td>&nbsp;<select>
-                                    <optgroup label="opciones">
-                                        <option value="Pendiente a despacho" selected="">Pendiente a despacho</option>
-                                        <option value="Despachada">Despachada</option>
-                                        <option value="Finalizada">Finalizada</option>
-                                        <option value="Cancelada">Cancelada</option>
-                                    </optgroup>
-                                </select></td>
-                        </tr>
+                        ))}
+                        
                     </tbody>
                 </table>
             </div>

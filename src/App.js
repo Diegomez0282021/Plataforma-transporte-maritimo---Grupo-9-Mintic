@@ -33,9 +33,9 @@ function App() {
         <Route path='/configurar-valor-milla' element={<ConfigurarValorMilla data={data.valorMilla}/>} />
         <Route path='/ordenes-dia' element={<OrdenesDia datos={data} date={date}/>} />
         <Route path='/aceptar-orden' element={<AceptarOrden/>}/>
-        <Route path='/cambiar-estado-orden' element={<CambiaEstado/>}/>
+        <Route path='/cambiar-estado-orden' element={<CambiaEstado data={data.ordenes}/>}/>
         <Route path="/" exact element={<Landing />} />  
-        <Route path="/orden" exact element={<Orden/>} />
+        <Route path="/orden" exact element={<Orden puertos={data.puertos}/>} />
         <Route path="/historial" exact element={<Historial datos={data}/>} />
         <Route path="/consultar" exact element={<Consultar informacion={data.ordenes} />} />
         <Route path="/IngPuerto" exact element={<Ingresopuerto/>} />
