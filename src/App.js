@@ -14,7 +14,8 @@ import Orden from './components/orden';
 import Historial from './components/historial';
 import Consultar from './components/consultar';
 import Ingresopuerto from './components/ingresoPuerto';
-import Datos from "./services/data.json"
+import Datos from "./services/data.json";
+import MapView from './components/MapView';
 
 function App() {
 
@@ -35,10 +36,11 @@ function App() {
         <Route path='/aceptar-orden' element={<AceptarOrden/>}/>
         <Route path='/cambiar-estado-orden' element={<CambiaEstado data={data.ordenes}/>}/>
         <Route path="/" exact element={<Landing />} />  
-        <Route path="/orden" exact element={<Orden puertos={data.puertos}/>} />
+        <Route path="/orden" exact element={<Orden valorMilla={data.valorMilla} puertos={data.puertos}/>} />
         <Route path="/historial" exact element={<Historial datos={data}/>} />
         <Route path="/consultar" exact element={<Consultar informacion={data.ordenes} />} />
         <Route path="/IngPuerto" exact element={<Ingresopuerto/>} />
+        <Route path="/map" exact element={<MapView/>} />
         </Routes>
         <Footer />
         

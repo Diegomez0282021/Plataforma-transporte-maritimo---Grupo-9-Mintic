@@ -20,17 +20,20 @@
         {
             "id_puerto":1,
             "nombre_puerto": "puerto1",
-            "posicion": 1
+            "latitud": 3.8770049841875824,
+            "longitud":-77.06896181673758
         },
         {
             "id_puerto":2,
             "nombre_puerto": "puerto2",
-            "posicion": 5
+            "latitud": 3.3756969796983682,
+            "longitud":-77.40001544028974
         },
         {
             "id_puerto":3,
             "nombre_puerto": "puerto3",
-            "posicion": 10
+            "latitud": 9.139236891473153,
+            "longitud":-83.86899704463546
         }
     ],
     "ordenes":[
