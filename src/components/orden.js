@@ -1,23 +1,41 @@
 import React,{useState} from 'react';
 import {useForm} from 'react-hook-form';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 
 export default function Orden({puertos,valorMilla}) {
 
     const [error,setError]=useState(false)
     const {register,handleSubmit,formState:{errors}} = useForm();
 
-    const getKilometros = (lat1,lon1,lat2,lon2)=>
-    {
-    const rad = (x) => {return x*Math.PI/180;}
-    var R = 6378.137; //Radio de la tierra en km
-    var dLat = rad( lat2 - lat1 );
-    var dLong = rad( lon2 - lon1 );
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLong/2) * Math.sin(dLong/2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    var d = R * c;
-    return d.toFixed(3); //Retorna tres decimales
-    }
 
+    
+    function degreesToRadians(degrees){
+        return degrees * Math.PI / 180;
+    }
+     
+    
+    function getDistanceBetweenPoints(lat1, lng1, lat2, lng2){
+        // El radio del planeta tierra en metros.
+        let R = 6378137;
+        let dLat = degreesToRadians(lat2 - lat1);
+        let dLong = degreesToRadians(lng2 - lng1);
+        let a = Math.sin(dLat / 2)
+                *
+                Math.sin(dLat / 2) 
+                +
+                Math.cos(degreesToRadians(lat1)) 
+                * 
+                Math.cos(degreesToRadians(lat1)) 
+                *
+                Math.sin(dLong / 2) 
+                * 
+                Math.sin(dLong / 2);
+    
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        let distance = R * c;
+    
+        return distance;
+    }
     const onSubmit = (data) =>{
         
         if (data.destino===data.origen){
@@ -26,7 +44,7 @@ export default function Orden({puertos,valorMilla}) {
         }
         else{
             setError(false)
-            data.distancia=getKilometros(puertos[data.origen].latitud,puertos[data.origen].longitud,puertos[data.destino].latitud,puertos[data.destino].longitud)*0.539957;
+            data.distancia=getDistanceBetweenPoints(puertos[data.origen-1].latitud,puertos[data.origen-1].longitud,puertos[data.destino-1].latitud,puertos[data.destino-1].longitud)*0.001;
             data.precio=parseInt(valorMilla*parseFloat(data.distancia))
             console.log(data)  
         }
@@ -76,6 +94,19 @@ export default function Orden({puertos,valorMilla}) {
                         {error&& <span className="text-danger text-small d-block mb-2">Origen y destinio deben ser diferentes</span>}
                     <div className="text-center mb-3"><button className="btn btn-primary text-center" type="submit">Enviar</button></div>
                 </form>
+                <div className='container'>
+                <MapContainer center={[3.879772587462408, -77.07226419465634]} zoom={8} scrollWheelZoom={true}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {puertos.map(e=>(
+                    <Marker position={[e.latitud,e.longitud]} >
+                        <Popup>{e.nombre_puerto}</Popup>
+                    </Marker>
+                ))}
+                </MapContainer>
+                </div>
         </section>
 
     )

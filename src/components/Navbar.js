@@ -13,7 +13,7 @@ export default function Navbar() {
                     <li className="nav-item"><Link className="nav-link" to="/consultar">Consultar</Link></li>
                     <li className="nav-item"></li>
                     <li className="nav-item dropdown"><Link className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" to="/">Dashboard</Link>
-                        <div className="dropdown-menu"><Link className="dropdown-item" to="/IngPuerto">Ingresar puerto</Link><Link className="dropdown-item" to="/configurar-valor-milla">Configurar valor milla nautica</Link><Link className="dropdown-item" to="/aceptar-orden">Aceptar orden</Link><Link className="dropdown-item" to="/cambiar-estado-orden">Cambiar estado de orden</Link><Link className="dropdown-item" to="/ordenes-dia">Ordenes del dia</Link></div>
+                        <div className="dropdown-menu"><Link className="dropdown-item" to="/IngPuerto">Ingresar puerto</Link><Link className="dropdown-item" to="/configurar-valor-milla">Configurar valor milla nautica</Link><Link className="dropdown-item" to="/aceptar-orden">Aceptar orden</Link><Link className="dropdown-item" to="/cambiar-estado-orden">Cambiar estado de orden</Link><Link className="dropdown-item" to="/ordenes-dia">Ordenes del dia</Link><Link className="dropdown-item" to="/RegistrarUsuarioInterno">Registrar usuario interno</Link></div>
                     </li>
                     </ul><span className="navbar-text actions"> <Link className="login" to="/login">Log In</Link><Link className="btn btn-light action-button" role="button" to="/register">Sign Up</Link></span>
                 </div>
