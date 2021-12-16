@@ -14,8 +14,10 @@ import Orden from './components/orden';
 import Historial from './components/historial';
 import Consultar from './components/consultar';
 import Ingresopuerto from './components/ingresoPuerto';
+import RegistrarUsuarioInterno from './components/RegistrarUsuarioInterno';
+import Factura from './components/Factura';
 import Datos from "./services/data.json";
-import MapView from './components/MapView';
+
 
 function App() {
 
@@ -40,7 +42,8 @@ function App() {
         <Route path="/historial" exact element={<Historial datos={data}/>} />
         <Route path="/consultar" exact element={<Consultar informacion={data.ordenes} />} />
         <Route path="/IngPuerto" exact element={<Ingresopuerto/>} />
-        <Route path="/map" exact element={<MapView/>} />
+        <Route path="/RegistrarUsuarioInterno" exact element={<RegistrarUsuarioInterno/>} />
+        <Route path="/factura" exact element={<Factura/>} />
         </Routes>
         <Footer />
         
