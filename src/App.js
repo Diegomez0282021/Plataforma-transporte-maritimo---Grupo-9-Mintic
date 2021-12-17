@@ -56,7 +56,7 @@ function RequireUser({ children }) {
         <Route path="/consultar"  element={<Consultar informacion={data.ordenes} />} />
         <Route path="/ingPuerto" element={<Ingresopuerto/>} />
         <Route path="/registrarUsuarioInterno" exact element={<RegistrarUsuarioInterno/>} />
-        <Route path="/factura" element={<Factura/>} />
+        <Route path="/factura" element={<RequireUser><Factura/></RequireUser>} />
       </Route>
       </Routes>  
       </Fragment>

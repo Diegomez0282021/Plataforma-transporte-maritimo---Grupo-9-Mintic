@@ -1,14 +1,16 @@
 import axios from "axios";
 
 const headers = { "Content-Type": "application/json; charset=utf-8" };
-
+const router =  "http://localhost:3001/api" ;
 const login = (data) =>
-  axios.post({...process.env.API_ROUTER+'/auth/login'}, JSON.stringify(data), {
+  
+
+  axios.post('http://localhost:3001/api/auth/login', JSON.stringify(data), {
     headers,
   });
 
 const register = (data) =>
-  axios.post({...process.env.API_ROUTER+'auth/register'}, data, {
+  axios.post(router + 'auth/register', data, {
     headers,
   });
 

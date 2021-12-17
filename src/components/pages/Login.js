@@ -1,15 +1,19 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link} from "react-router-dom";
 import {useForm} from 'react-hook-form'
-
+import { useAuth } from "../../hooks/user.hook";
 
 function Login() {
-    const {register,handleSubmit,formState:{errors}} = useForm();
+const { register, handleSubmit ,formState:{errors}} = useForm();
+  const auth = useAuth();
+  
 
-    const onSubmit = (data) =>{
-        console.log(data)       
-        data.preventDefault();
-    }
+  const onSubmit = (data) => {
+    auth.signin(data, () => {
+        <Link className="forgot" to="/"></Link>
+    //   window.location.reload();
+    });
+  };
     return (
     <section className="login-clean">
         <form onSubmit={handleSubmit(onSubmit)}>
