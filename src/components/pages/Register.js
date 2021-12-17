@@ -11,7 +11,7 @@ function Register() {
         <div className="row register-form">
         <div className="col-md-8 offset-md-2">
             <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
-                <h1>Register Form</h1>
+                <h1>Register User</h1>
                 <div className="row form-group">
                     <div className="col-sm-4 label-column"><label className="col-form-label" for="name-input-field">Nombre</label></div>
                     <div className="col-sm-6 input-column">
