@@ -1,14 +1,19 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link} from "react-router-dom";
 import {useForm} from 'react-hook-form'
-
+import { useAuth } from "../../hooks/user.hook";
 
 function Login() {
-    const {register,handleSubmit,formState:{errors}} = useForm();
+const { register, handleSubmit ,formState:{errors}} = useForm();
+  const auth = useAuth();
+  
 
-    const onSubmit = (data) =>{
-        console.log(data)       
-    }
+  const onSubmit = (data) => {
+    auth.signin(data, () => {
+        //<Link className="forgot" to="/"></Link>
+        window.location.reload();
+    });
+  };
     return (
     <section className="login-clean">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -25,7 +30,7 @@ function Login() {
             </div>                                
             <div className="mb-3">
                 <input className="form-control" type="password" name="password" placeholder="Password"
-                                {...register("pass",{                    
+                                {...register("password",{                    
                                     required:true,                        
                                     pattern:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/,
                                     //  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/,              
