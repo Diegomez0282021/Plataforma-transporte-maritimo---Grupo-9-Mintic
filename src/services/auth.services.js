@@ -7,7 +7,7 @@ const login = (data) =>
     headers,
   });
 
-const register = (data) =>
+const registerUser = (data) =>
   axios.post("http://localhost:3001/api/auth/register", data, {
     headers,
   });
@@ -20,4 +20,7 @@ const getUser = () => {
   return axios.get("http://localhost:3001/api/auth", { headers });
 };
 
-export { login, register, getUser };
+const getUsers = () =>
+  axios.get('http://localhost:3001/api/auth/getUsers');
+
+export { login, registerUser, getUser, getUsers };

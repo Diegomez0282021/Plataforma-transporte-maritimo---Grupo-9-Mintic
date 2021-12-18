@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
       setUser(user.item);
       callback();
     } else {
+      console.log(data)
       alert("Datos incorrectos");
       callback();
     }
