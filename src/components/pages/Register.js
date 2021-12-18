@@ -11,7 +11,7 @@ function Register() {
         <div className="row register-form">
         <div className="col-md-8 offset-md-2">
             <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
-                <h1>Register User</h1>
+                <h1>Registro</h1>
                 <div className="row form-group">
                     <div className="col-sm-4 label-column"><label className="col-form-label" for="name-input-field">Nombre</label></div>
                     <div className="col-sm-6 input-column">
@@ -65,7 +65,7 @@ function Register() {
                         {errors.passRepeat && errors.passRepeat.type === "required" &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}                          
                     </div>
                 </div>               
-                <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-1"/><label className="form-check-label" for="formCheck-1">He leído y acepto los Términos y Condiciones, así como la Política de Privacidad de Datos</label></div><button className="btn btn-light submit-button" type="submit">Submit Form</button>
+                <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-1"/><label className="form-check-label" for="formCheck-1">He leído y acepto los Términos y Condiciones, así como la Política de Privacidad de Datos</label></div><button className="btn btn-light submit-button" type="submit">Registrarse</button>
             </form>
         </div>
     </div>
