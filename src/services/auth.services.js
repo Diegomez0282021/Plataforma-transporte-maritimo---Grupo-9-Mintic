@@ -1,16 +1,14 @@
 import axios from "axios";
 
 const headers = { "Content-Type": "application/json; charset=utf-8" };
-const router =  "http://localhost:3001/api" ;
-const login = (data) =>
-  
 
-  axios.post('http://localhost:3001/api/auth/login', JSON.stringify(data), {
+const login = (data) =>
+  axios.post("http://localhost:3001/api/auth/login", JSON.stringify(data), {
     headers,
   });
 
 const register = (data) =>
-  axios.post(router + 'auth/register', data, {
+  axios.post("http://localhost:3001/api/auth/register", data, {
     headers,
   });
 
@@ -19,7 +17,7 @@ const getUser = () => {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.get({...process.env.API_ROUTER+'/auth'}, { headers });
+  return axios.get("http://localhost:3001/api/auth", { headers });
 };
 
 export { login, register, getUser };

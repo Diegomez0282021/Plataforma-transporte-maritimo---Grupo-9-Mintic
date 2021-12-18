@@ -10,8 +10,8 @@ const { register, handleSubmit ,formState:{errors}} = useForm();
 
   const onSubmit = (data) => {
     auth.signin(data, () => {
-        <Link className="forgot" to="/"></Link>
-    //   window.location.reload();
+        //<Link className="forgot" to="/"></Link>
+        window.location.reload();
     });
   };
     return (
@@ -30,7 +30,7 @@ const { register, handleSubmit ,formState:{errors}} = useForm();
             </div>                                
             <div className="mb-3">
                 <input className="form-control" type="password" name="password" placeholder="Password"
-                                {...register("pass",{                    
+                                {...register("password",{                    
                                     required:true,                        
                                     pattern:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/,
                                     //  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/,              

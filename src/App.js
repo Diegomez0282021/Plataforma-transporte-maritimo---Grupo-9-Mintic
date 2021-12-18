@@ -17,7 +17,7 @@ import RegistrarUsuarioInterno from './components/pages/RegistrarUsuarioInterno'
 import Factura from './components/pages/Factura';
 
 import Datos from "./services/data.json";
-import { UserProvider } from "./providers/user.provider";
+import { AuthProvider } from "./providers/user.provider";
 import { useAuth } from "./hooks/user.hook";
 import AppLayout from "./components/layouts/app.layout";
 
@@ -39,7 +39,7 @@ function RequireUser({ children }) {
   
 
   return (
-    <UserProvider>
+    <AuthProvider>
     <Router >
       <Fragment>
       <Routes >
@@ -62,7 +62,7 @@ function RequireUser({ children }) {
       </Fragment>
 
     </Router>
-    </UserProvider>
+    </AuthProvider>
   );
 }
 

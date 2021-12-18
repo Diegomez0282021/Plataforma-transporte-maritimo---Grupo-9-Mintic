@@ -1,9 +1,9 @@
 import React from "react";
-import { login, getUser } from "../services/user.services";
+import { login, getUser } from "./../services/auth.services";
 
-let UserContext = React.createContext(null);
+let AuthContext = React.createContext(null);
 
-const UserProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   let [user, setUser] = React.useState();
 
   React.useEffect(() => {
@@ -37,7 +37,7 @@ const UserProvider = ({ children }) => {
 
   let value = { user, signin, signout, get };
 
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export { UserProvider, UserContext };
+export { AuthProvider, AuthContext };
