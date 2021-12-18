@@ -5,7 +5,7 @@ const getPort = () => {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.get("http://localhost:3001/api/seaPort", { headers });
+  return axios.get("http://localhost:3001/api/puerto", { headers });
 };
 
 const savePort = (data) => {
@@ -13,7 +13,7 @@ const savePort = (data) => {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.post("http://localhost:3001/api/seaPort", JSON.stringify(data), {
+  return axios.post("http://localhost:3001/api/puerto", JSON.stringify(data), {
     headers,
   });
 };
