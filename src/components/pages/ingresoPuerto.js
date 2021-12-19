@@ -6,7 +6,7 @@ import {savePort} from './../../services/puerto.services';
 
 const IngresoPuerto = () => {
 
-    const [position, setPosition] = useState({lat:50,lng:50})
+    const [position, setPosition] = useState({lat:0,lng:0})
     function LocationMarker() {
         
         
@@ -34,6 +34,7 @@ const IngresoPuerto = () => {
         data.latitud=parseFloat(position.lat);
         console.log(data);
         const { info } = await savePort(data);
+        setPosition(...[{lat:0,lng:0}])
         alert("Registro exitoso")
 
     }
