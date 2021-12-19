@@ -11,7 +11,7 @@ const AceptarOrden = () => {
             let datos=arreglo.filter((e)=>!e.state)
             setData(datos);
           })
-          .catch((errors) => {console.log(errors)});
+          .catch((errors) => {console.log(errors )});
         }, []);
     
     const Aceptar=(id)=>{
