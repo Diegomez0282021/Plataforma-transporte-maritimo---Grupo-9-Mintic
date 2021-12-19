@@ -47,4 +47,4 @@ const deleteOrders = (dato) => {
 };
 
 
-export { getOrders, saveOrders,updateOrders,deleteOrders };
+export { getOrders, saveOrden,updateOrders,deleteOrders,getUserId };
