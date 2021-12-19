@@ -8,6 +8,7 @@ const AceptarOrden = () => {
         getOrders()
           .then((response) => {
             let arreglo=response.data.items;
+            console.log(response)
             let datos=arreglo.filter((e)=>!e.state)
             setData(datos);
           })
