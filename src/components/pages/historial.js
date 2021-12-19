@@ -4,69 +4,69 @@ import  { useEffect, useState } from "react";
 import {  getOrders } from "../../services/orden.services";
 import { getUser } from "../../services/user.service";
 import { getPort } from "../../services/puerto.services";
-//  const explanable= ({data}) =>{
-//     return (
+ const explanable= ({data}) =>{
+    return (
         
-//         <section className="contact-clean">
-//               <div className="col-8">
-//         <table className="table">
-//           <thead>           
-//             <tr>              
-//               <th>Valor factura</th>
-//               <th>Fecha factura</th>
-//               <th>Fecha estado</th>                         
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {data.orders
-//               ? data.orders.map((e) => (
-//                   <tr>
-//                     <td>{e.invoice.amount}</td>
-//                     <td>{e.invoice.Date}</td>
-//                     <td>{e.stateOrder.date}</td>                   
-//                   </tr>
-//                 ))
-//               : null}
-//           </tbody>
-//         </table>
-//       </div>     
-//         {/* <h1 className="text-center">Historial de ordenes de despacho</h1>
-//         <div className="table-responsive">
-//             <table className="table">
-//                 <thead>
-//                     <tr>
-//                         <th>Codigo</th>
-//                         <th>Nombre</th>
-//                         <th>Descripcion</th>
-//                         <th>Dimensiones</th>
-//                         <th>Origen</th>
-//                         <th>Destino</th>
-//                         <th>Estado</th>
-//                     </tr>
-//                 </thead>
+        <section className="contact-clean">
+              <div className="col-8">
+        <table className="table">
+          <thead>           
+            <tr>              
+              <th>Valor factura</th>
+              <th>Fecha factura</th>
+              <th>Fecha estado</th>                         
+            </tr>
+          </thead>
+          <tbody>
+            {data.seaports
+              ? data.seaports.map((e) => (
+                  <tr>
+                    <td>{e.name}</td>
+                    <td>{e.longitud}</td>
+                    <td>{e.latitud}</td>                   
+                  </tr>
+                ))
+              : null}
+          </tbody>
+        </table>
+      </div>     
+        {/* <h1 className="text-center">Historial de ordenes de despacho</h1>
+        <div className="table-responsive">
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Dimensiones</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
                         
-//                 <tbody>
-//                     {datos.ordenes.map(e=>(
-//                         <tr>
-//                         <td>{e.id_orden}</td>
-//                         <td>{e.nombre}</td>
-//                         <td>{e.descripcion}</td>
-//                         <td>{e.dimensiones}</td>
-//                         <td>{e.origen}</td>
-//                         <td>{e.destino}</td>
-//                         <td>{e.estado}</td>
-//                     </tr>
-//                     ))}
+                <tbody>
+                    {datos.ordenes.map(e=>(
+                        <tr>
+                        <td>{e.id_orden}</td>
+                        <td>{e.nombre}</td>
+                        <td>{e.descripcion}</td>
+                        <td>{e.dimensiones}</td>
+                        <td>{e.origen}</td>
+                        <td>{e.destino}</td>
+                        <td>{e.estado}</td>
+                    </tr>
+                    ))}
                     
                     
-//                 </tbody>
+                </tbody>
                 
                 
-//             </table>
-//         </div> */}
-//     </section>
-//     )
-// };
+            </table>
+        </div> */}
+    </section>
+    )
+};
 
 const Historial = () => {
     const [products, setProducts] = useState([]);
@@ -124,7 +124,7 @@ return(
         data={products}
         pagination
         expandableRows
-        // expandableRowsComponent={explanable}
+        expandableRowsComponent={explanable}
         />
         </div>
         </section>
