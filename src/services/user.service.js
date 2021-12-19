@@ -1,12 +1,12 @@
-
 import axios from "axios";
+import './../config';
 
 const getUser = () => {
   const headers = {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.get("http://localhost:3001/api/auth", { headers });
+  return axios.get(`${global.config.URLAPI}/api/auth`, { headers });
 };
 
 // const saveOrders = (data) => {

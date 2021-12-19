@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {useForm} from 'react-hook-form';
-import {registerUser,getUsers} from './../../services/auth.services'
+import {registerUser,getUsers} from './../../services/auth.services';
+import './../../config';
 
 function Register() {
     const {register,handleSubmit,formState:{errors}} = useForm();
@@ -23,7 +24,8 @@ function Register() {
                 alert("Ya existe el usuario")
             }else{
                 const { datos } = await registerUser(data);
-                alert("Registro exitoso")
+                alert("Registro exitoso");
+                window.location.href=global.config.URL+"login";
                 
             }
             

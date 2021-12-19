@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import {useForm} from 'react-hook-form'
 import { useAuth } from "../../hooks/user.hook";
+import './../../config';
 
 function Login() {
 const { register, handleSubmit ,formState:{errors}} = useForm();
@@ -11,7 +12,9 @@ const { register, handleSubmit ,formState:{errors}} = useForm();
   const onSubmit = (data) => {
     auth.signin(data, () => {
         //<Link className="forgot" to="/"></Link>
-        window.location.reload();
+        //window.location.reload();
+        window.location.href=global.config.URL;
+        //<Navigate to="/" state={{ from: location }} />
     });
   };
     return (
