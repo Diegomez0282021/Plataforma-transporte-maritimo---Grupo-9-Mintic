@@ -11,11 +11,10 @@ const AceptarOrden = () => {
             let datos=arreglo.filter((e)=>!e.state)
             setData(datos);
           })
-          .catch((errors) => {console.log(errors)});
+          .catch((errors) => {console.log(errors )});
         }, []);
     
     const Aceptar=(id)=>{
-        console.log(id)
         let change={"_id":id}
         
         updateOrders(change)
@@ -34,12 +33,8 @@ const AceptarOrden = () => {
 
     const Eliminar =async (id)=>{
         let change={"id":id}
-        console.log(id);
-        console.log(change)
         deleteOrders(change)
         .then((response)=>{
-            console.log("Eliminado")
-            console.log(response)
             getOrders()
           .then((response) => {
             let arreglo=response.data.items;
