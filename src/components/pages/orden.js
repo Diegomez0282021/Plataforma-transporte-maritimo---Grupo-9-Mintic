@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { useOrden } from "../../hooks/orden.hook";
 import { useAuth } from "../../hooks/user.hook";
-import { getPort} from "../../services/puerto.services";
+import { getPort } from "../../services/puerto.services";
 import { getUser} from "../../services/auth.services";
 
 
@@ -11,29 +11,26 @@ export default function Orden({valorMilla}) {
         
     const [ports, setPorts] = useState();
     const [usuario, setUsuario] = useState();
-    // const [puertos, getPort] = useState();
+    
     const [error,setError]=useState(false)
     const {register,handleSubmit,formState:{errors}} = useForm();
     const Orden = useOrden();
     const auth = useAuth();
+    const idUser=auth.user.data?.id    
+   
+    
     useEffect(() => {
         getPort().then(({ data }) => {
-            console.log(data)
-            console.log(data.items)
-            // console.log(auth.user?.data)
-            // console.log(auth.user)
-            // console.log(auth.get)
             
           setPorts(data.items);
         });
-        getUser().then(({ data }) => {
-            console.log('------')
+        getUser({}).then(({ data }) => {
             console.log(data)
-            console.log(data.item)
-            console.log('----ddd--')
-            setUsuario(data.item);
+            console.log(data.item.data,'data.itemss')     
+          setUsuario(data.item);
+
+       
         });
-        ;
     }, []);
 
     
@@ -69,21 +66,7 @@ export default function Orden({valorMilla}) {
         Orden.post(data, () => {
             window.location.reload();});
         
-        // if (data.destino===data.origen){
-        //     setError(true)
-            
-        // }
-        // else{
-        //     setError(false)
-        //     data.distancia=getDistanceBetweenPoints(puertos[data.origen-1].latitud,puertos[data.origen-1].longitud,puertos[data.destino-1].latitud,puertos[data.destino-1].longitud)*0.001;
-        //     data.precio=parseInt(valorMilla*parseFloat(data.distancia))
-        //     console.log(data) 
-        //     Orden.saveOrden(data, () => {
-        //             //<Link className="forgot" to="/"></Link>
-        //             window.location.reload();
-        //     });
-        // }
-             
+    
     }
     return (
         <section className="contact-clean">
@@ -120,6 +103,7 @@ export default function Orden({valorMilla}) {
                         {/* {errors.origen &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>} */}
                         {/* {error&& <span className="text-danger text-small d-block mb-2">Origen y destino deben ser diferentes</span>} */}
                     <div className="mb-3"><select className="form-select" {...register("ports.idPortDestination",{required:true})}>
+                            <option value="">-Seleccionar origen-</option>
                           {ports
                             ? ports.map((c) => (
                              <option value={c._id}>{c.name}</option>
@@ -128,13 +112,9 @@ export default function Orden({valorMilla}) {
                         </select></div>
                         {/* {errors.destino &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>} */}
                         {/* {error&& <span className="text-danger text-small d-block mb-2">Origen y destino deben ser diferentes</span>} */}
-                        <div  class=" ">
-                        {/* {usuario
-                            ? usuario. ((c) => ( */}
-                            <input className="form-control" type="text" placeholder={usuario?.id} name="Ancho" value={usuario?._id} {...register("idUser")}/>
-                            {/* ))
-                            : null}    */}
-                        
+                        <div  class="d-none d-md-done d-lg-none">
+                            <input className="form-control" type="text" placeholder={`${idUser}`} name="Ancho" value={`${idUser}`} {...register("idUser")}/>
+                                                  
                         </div>            
                     <div className="text-center mb-3"><button className="btn btn-primary text-center" type="submit">Enviar</button></div>
                 </form>

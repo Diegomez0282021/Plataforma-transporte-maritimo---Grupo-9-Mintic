@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { saveOrden} from "./../services/orden.services";
+import { saveOrden,getUserId} from "./../services/orden.services";
 
 
 
@@ -10,15 +10,19 @@ const OrdenProvider = ({ children }) => {
    
     let post = async(datos) => {
       const { data } = await saveOrden(datos)
-      console.log(data)
-      console.log(data.item)
-      console.log(datos)
       setOrden(datos);
       //callback();
     };
+    let getUserIds = async(datos) => {
+      const { data } = await getUserId(datos)
+      console.log(data,'provider')
+      console.log(`'${datos}'`,'pppppp')
+      setOrden(datos);
+      
+    };
   
 
-    let value = { orden, post };
+    let value = { orden, post,getUserIds };
     return <OrdenContext.Provider value={value}>{children}</OrdenContext.Provider>;
 
 };
