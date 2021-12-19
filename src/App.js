@@ -18,6 +18,7 @@ import Factura from './components/pages/Factura';
 
 import Datos from "./services/data.json";
 import { AuthProvider } from "./providers/user.provider";
+import { OrdenProvider } from "./providers/orden.provider";
 import { useAuth } from "./hooks/user.hook";
 import AppLayout from "./components/layouts/app.layout";
  
@@ -40,10 +41,13 @@ function RequireUser({ children }) {
 
   return (
     <AuthProvider>
+    <OrdenProvider>
+    
     <Router >
       <Fragment>
       <Routes >
       <Route element={<AppLayout />}>
+       
         <Route path='/' element={<Landing/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
@@ -57,11 +61,14 @@ function RequireUser({ children }) {
         <Route path="/ingPuerto" element={<Ingresopuerto/>} />
         <Route path="/registrarUsuarioInterno" exact element={<RegistrarUsuarioInterno/>} />
         <Route path="/factura" element={<RequireUser><Factura/></RequireUser>} />
+        
       </Route>
       </Routes>  
       </Fragment>
 
     </Router>
+    
+    </OrdenProvider>
     </AuthProvider>
   );
 }
