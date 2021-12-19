@@ -12,15 +12,22 @@ const saveOrden = (data) =>
     headers,
   });
 
-const getOrders = () => {
+  const getOrders = () => {
+    const headers = {
+      Authorization: localStorage.token,
+      "Content-Type": "application/json; charset=utf-8",
+    };
+    return axios.get("http://localhost:3001/api/order", { headers });
+};
+const getUserId = () => {
   const headers = {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.get("http://localhost:3001/api/order", { headers });
+  return axios.get("http://localhost:3001/api/orderByUser/:userID", { headers });
 };
 
 
-export {getOrders , saveOrden };
+export {getOrders , saveOrden, getUserId};
 
 
