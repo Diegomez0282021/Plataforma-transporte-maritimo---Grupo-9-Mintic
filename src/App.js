@@ -26,7 +26,7 @@ function App() {
 
   const [data]=useState(Datos);
   const current=new Date();
-  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 
 function RequireUser({ children }) {
     let auth = useAuth();
@@ -47,7 +47,7 @@ function RequireUser({ children }) {
         <Route path='/' element={<Landing/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
-        <Route path='/configurar-valor-milla' element={<ConfigurarValorMilla data={data.valorMilla}/>} />
+        <Route path='/configurar-valor-milla' element={<ConfigurarValorMilla data={data.valorMilla} date={date}/>} />
         <Route path='/ordenes-dia' element={<OrdenesDia datos={data} date={date}/>} />
         <Route path='/aceptar-orden' element={<AceptarOrden/>}/>
         <Route path='/cambiar-estado-orden' element={<CambiaEstado data={data.ordenes}/>}/> 
