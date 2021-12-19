@@ -28,6 +28,23 @@ const getUserId = () => {
 };
 
 
-export {getOrders , saveOrden, getUserId};
+const updateOrders = (data) => {
+  const headers = {
+    Authorization: localStorage.token,
+    "Content-Type": "application/json; charset=utf-8",
+  };
+  return axios.post(`http://localhost:3001/api/order/update`, JSON.stringify(data), {
+    headers,
+  });
+};
+
+const deleteOrders = (dato) => {
+  const headers = {
+    Authorization: localStorage.token,
+    "Content-Type": "application/json; charset=utf-8",
+  };
+  return axios.delete(`http://localhost:3001/api/order/remove`,{ data:dato});
+};
 
 
+export { getOrders, saveOrders,updateOrders,deleteOrders };
