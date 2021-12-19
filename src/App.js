@@ -21,7 +21,7 @@ import { AuthProvider } from "./providers/user.provider";
 import { OrdenProvider } from "./providers/orden.provider";
 import { useAuth } from "./hooks/user.hook";
 import AppLayout from "./components/layouts/app.layout";
-
+ 
 
 function App() {
 
@@ -56,7 +56,7 @@ function RequireUser({ children }) {
         <Route path='/aceptar-orden' element={<AceptarOrden/>}/>
         <Route path='/cambiar-estado-orden' element={<CambiaEstado data={data.ordenes}/>}/> 
         <Route path="/orden"  element={<Orden valorMilla={data.valorMilla} puertos={data.puertos}/>} />
-        <Route path="/historial"  element={<Historial datos={data}/>} />
+        <Route path="/historial"  element={<Historial />} />
         <Route path="/consultar"  element={<Consultar informacion={data.ordenes} />} />
         <Route path="/ingPuerto" element={<Ingresopuerto/>} />
         <Route path="/registrarUsuarioInterno" exact element={<RegistrarUsuarioInterno/>} />

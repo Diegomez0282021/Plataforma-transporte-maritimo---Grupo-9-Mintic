@@ -1,14 +1,15 @@
 import axios from "axios";
-
+import './../config';
+//http://localhost:3001/api/auth/login
 const headers = { "Content-Type": "application/json; charset=utf-8" };
 
 const login = (data) =>
-  axios.post("http://localhost:3001/api/auth/login", JSON.stringify(data), {
+  axios.post(`${global.config.URLAPI}/api/auth/login`, JSON.stringify(data), {
     headers,
   });
 
-const register = (data) =>
-  axios.post("http://localhost:3001/api/auth/register", data, {
+const registerUser = (data) =>
+  axios.post(`${global.config.URLAPI}/api/auth/register`, data, {
     headers,
   });
 
@@ -17,7 +18,10 @@ const getUser = () => {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.get("http://localhost:3001/api/auth", { headers });
+  return axios.get(`${global.config.URLAPI}/api/auth`, { headers });
 };
 
-export { login, register, getUser };
+const getUsers = () =>
+  axios.get(`${global.config.URLAPI}/api/auth/getUsers`);
+
+export { login, registerUser, getUser, getUsers };

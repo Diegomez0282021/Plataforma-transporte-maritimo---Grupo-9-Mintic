@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const headers = {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
@@ -11,4 +12,15 @@ const saveOrden = (data) =>
     headers,
   });
 
-export { saveOrden };
+const getOrders = () => {
+  const headers = {
+    Authorization: localStorage.token,
+    "Content-Type": "application/json; charset=utf-8",
+  };
+  return axios.get("http://localhost:3001/api/order", { headers });
+};
+
+
+export {getOrders , saveOrden };
+
+

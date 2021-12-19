@@ -1,9 +1,13 @@
-.buttons{   
-    margin-top: 50px;
+#navbar1{
     display: flex;
-    justify-content: space-evenly;             
-    margin-right: 20px;
+    align-items: center;
+    
 }
+
+#navcol-1{
+    justify-content: flex-end;
+}
+
 
 .leaflet-container {
     width: 80vw;

@@ -20,7 +20,7 @@ function ConfigurarValorMilla({data}) {
                 <input class="form-control" type="number" name="nuevo_valor" placeholder="Ejemplo: 1200" {...register("valorMilla",{required:true, min:1})}/>
                 {errors.valorMilla && errors.valorMilla.type === "required" &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
                 {errors.valorMilla && errors.valorMilla.type === "min" &&<span className="text-danger text-small d-block mb-2">Este campo debe ser mayor a 1</span>}
-                <button class="btn btn-primary text-center" type="submit">Aceptar</button>
+                <button className="btn btn-primary text-center" type="submit">Aceptar</button>
             </form>
         </section>
     )

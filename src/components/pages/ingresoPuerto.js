@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
 import {useForm} from 'react-hook-form';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import {savePort} from './../../services/puerto.services';
 
 
 const IngresoPuerto = () => {
 
-    const [position, setPosition] = useState({lat:50,lng:50})
+    const [position, setPosition] = useState({lat:0,lng:0})
     function LocationMarker() {
         
         
@@ -28,10 +29,14 @@ const IngresoPuerto = () => {
 
     const {register,handleSubmit,formState:{errors}} = useForm();
 
-    const onSubmit = (data) =>{
-        data.longitud=position.lng;
-        data.latitud=position.lat;
-        console.log(data)       
+    const onSubmit = async (data) =>{
+        data.longitud=parseFloat( position.lng);
+        data.latitud=parseFloat(position.lat);
+        console.log(data);
+        const { info } = await savePort(data);
+        setPosition(...[{lat:0,lng:0}])
+        alert("Registro exitoso")
+
     }
 
     return (
@@ -40,8 +45,8 @@ const IngresoPuerto = () => {
             <h1 className="text-center">Ingresar puerto.</h1>
             <form className="text-center" onSubmit={handleSubmit(onSubmit)}>
                 <label className="form-label" for="nombre_puerto">Nombre del puerto</label>
-                <input className="form-control" type="text" name="nombre_puerto" placeholder="Ejemplo: Puerto xyz" {...register("nombrePuerto",{required:true})}/>
-                {errors.nombrePuerto && <span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
+                <input className="form-control" type="text" name="nombre_puerto" placeholder="Ejemplo: Puerto xyz" {...register("name",{required:true})}/>
+                {errors.name && <span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
                 <label className="form-label" for="ubicacion" >Ubicación</label>
                 <input className="form-control" type="text" name="ubicacion" placeholder="Latitude" value={position.lat}  {...register("latitud",{required:true})}/>
                 {errors.latitud && <span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
