@@ -60,9 +60,10 @@ export default function Orden({valorMilla}) {
     
         return distance;
     }
-    const onSubmit = (data) =>{
+    const onSubmit = (data,e) =>{
         Orden.post(data, () => {
             window.location.reload();});
+            e.target.reset();
     }
 
     return (
