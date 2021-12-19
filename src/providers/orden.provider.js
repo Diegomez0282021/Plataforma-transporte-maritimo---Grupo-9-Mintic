@@ -16,8 +16,6 @@ const OrdenProvider = ({ children }) => {
     };
     let getUserIds = async(datos) => {
       const { data } = await getUserId(datos)
-      console.log(data,'provider')
-      console.log(`'${datos}'`,'pppppp')
       setOrden(datos);
       
     };

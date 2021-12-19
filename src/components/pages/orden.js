@@ -10,8 +10,7 @@ import { getUser} from "../../services/auth.services";
 export default function Orden({valorMilla}) {
         
     const [ports, setPorts] = useState();
-    const [usuario, setUsuario] = useState();
-    
+    const [usuario, setUsuario] = useState(); 
     const [error,setError]=useState(false)
     const {register,handleSubmit,formState:{errors}} = useForm();
     const Orden = useOrden();
@@ -20,16 +19,13 @@ export default function Orden({valorMilla}) {
    
     
     useEffect(() => {
-        getPort().then(({ data }) => {
-            
+        getPort().then(({ data }) => {      
           setPorts(data.items);
         });
         getUser({}).then(({ data }) => {
             console.log(data)
             console.log(data.item.data,'data.itemss')     
-          setUsuario(data.item);
-
-       
+          setUsuario(data.item);   
         });
     }, []);
 
@@ -38,6 +34,9 @@ export default function Orden({valorMilla}) {
         return degrees * Math.PI / 180;
     }
      
+    function degreesToRadians(degrees){
+        return degrees * Math.PI / 180;
+    }
     
     function getDistanceBetweenPoints(lat1, lng1, lat2, lng2){
         // El radio del planeta tierra en metros.
@@ -62,12 +61,10 @@ export default function Orden({valorMilla}) {
         return distance;
     }
     const onSubmit = (data) =>{
-        console.log(data) 
         Orden.post(data, () => {
             window.location.reload();});
-        
-    
     }
+
     return (
         <section className="contact-clean">
                 <form method="post" onSubmit={handleSubmit(onSubmit)}>
@@ -100,8 +97,8 @@ export default function Orden({valorMilla}) {
                         </select>
 
                        </div>
-                        {/* {errors.origen &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>} */}
-                        {/* {error&& <span className="text-danger text-small d-block mb-2">Origen y destino deben ser diferentes</span>} */}
+                        {errors.origen &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
+                        {error&& <span className="text-danger text-small d-block mb-2">Origen y destino deben ser diferentes</span>}
                     <div className="mb-3"><select className="form-select" {...register("ports.idPortDestination",{required:true})}>
                             <option value="">-Seleccionar origen-</option>
                           {ports
@@ -110,8 +107,8 @@ export default function Orden({valorMilla}) {
                             ))
                             : null}
                         </select></div>
-                        {/* {errors.destino &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>} */}
-                        {/* {error&& <span className="text-danger text-small d-block mb-2">Origen y destino deben ser diferentes</span>} */}
+                        {errors.destino &&<span className="text-danger text-small d-block mb-2">Este campo es requerido</span>}
+                        {error&& <span className="text-danger text-small d-block mb-2">Origen y destino deben ser diferentes</span>}
                         <div  class="d-none d-md-done d-lg-none">
                             <input className="form-control" type="text" placeholder={`${idUser}`} name="Ancho" value={`${idUser}`} {...register("idUser")}/>
                                                   
@@ -130,8 +127,7 @@ export default function Orden({valorMilla}) {
                                 <Popup>{e.name}</Popup>
                                 </Marker>
                                 
-                            ))
-                            
+                            ))   
                             : null}
                             </MapContainer>
                 
