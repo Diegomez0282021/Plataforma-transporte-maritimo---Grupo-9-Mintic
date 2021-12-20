@@ -4,6 +4,8 @@ import  { useEffect, useState } from "react";
 import {  getOrders } from "../../services/orden.services";
 import { getUser } from "../../services/user.service";
 import { getPort } from "../../services/puerto.services";
+import { useAuth } from "../../hooks/user.hook";
+import { Link } from 'react-router-dom';
  const explanable= ({data}) =>{
     return (
         
@@ -14,19 +16,19 @@ import { getPort } from "../../services/puerto.services";
             <tr>              
               <th>Valor factura</th>
               <th>Fecha factura</th>
-              <th>Fecha estado</th>                         
+              <th>Estado</th>
+              <th>Fecha estado</th>     
+              <th>Ver</th>                        
             </tr>
           </thead>
           <tbody>
-            {data.orders
-              ? data.orders.map((e) => (
                   <tr>
-                    <td>{e.invoice.amount}</td>
-                    <td>{e.invoice.Date}</td>
-                    <td>{e.stateOrder.date}</td>                   
+                    <td>{data.invoice.value}</td>
+                    <td>{data.invoice.Date}</td>
+                    <td>{data.stateOrder.state}</td> 
+                    <td>{data.stateOrder.date}</td>
+                    <td><Link to={`/Factura/${data._id}`}  >Ver</Link></td>                   
                   </tr>
-                ))
-              : null}
           </tbody>
         </table>
       </div>     
@@ -72,6 +74,8 @@ const Historial = () => {
     const [products, setProducts] = useState([]);
     const [users, setUsers] = useState();
     const [ports, setPort] = useState();
+    const auth = useAuth();
+    const idUser=auth.user.data?.id   
     // const [products, setProducts] = useState([]);
 const columns = [
     {
@@ -102,7 +106,9 @@ const columns = [
   ];
   const listProducts = () => {
     getOrders().then(({ data }) => {
-      setProducts(data.items);
+      let datos=data.items;
+      let datos_filtrados=datos.filter(e=>e.idUser._id===idUser)
+      setProducts(datos_filtrados);
     });
   };
   useEffect(() => {

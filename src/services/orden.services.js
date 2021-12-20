@@ -38,6 +38,16 @@ const updateOrders = (data) => {
   });
 };
 
+const updateOrderState = (data) => {
+  const headers = {
+    Authorization: localStorage.token,
+    "Content-Type": "application/json; charset=utf-8",
+  };
+  return axios.post(`http://localhost:3001/api/order/updateState`, JSON.stringify(data), {
+    headers,
+  });
+};
+
 const deleteOrders = (dato) => {
   const headers = {
     Authorization: localStorage.token,
@@ -47,4 +57,4 @@ const deleteOrders = (dato) => {
 };
 
 
-export { getOrders, saveOrden,updateOrders,deleteOrders,getUserId };
+export { getOrders, saveOrden,updateOrders,updateOrderState,deleteOrders,getUserId };
