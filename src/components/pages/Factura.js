@@ -1,23 +1,61 @@
-import React,{useRef} from 'react';
+import React,{useRef,useEffect,useState} from 'react';
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+import {useParams} from "react-router-dom";
+import { updateOrderState, getOrders } from "../../services/orden.services";
+import {getConfigValue} from './../../services/valorMillas.services';
+import './../../config';
+
 
 const Factura = () => {
-
+    const { id } = useParams();
+    const [data,setData]=useState();
+    const [valor, setValor] = useState([])
     const PDFExportComponent=useRef(null);
     const handleExportWithComponent = (event) =>{
         PDFExportComponent.current.save()
     }
 
-    return (
+    useEffect(async () => {
+        await getOrders()
+          .then((response) => {
+            let datos=response.data.items;
+            let datos_filtrados=datos.filter(e=>e._id===id)
+            setData(datos_filtrados);
+            
+          })
+          .catch((errors) => {console.log(errors)});
+        await  getConfigValue()
+          .then((response) => {
+            setValor(response.data.items.value);
+          })
+          .catch((errors) => {console.log(errors)});
+        }, []);
 
-    <div className="page-content container">
+        const Pagar= async (id)=>{
+            let change={"id":id}
+            console.log(change)
+            
+            await updateOrderState(change)
+            .then((response)=>{
+                console.log(response)
+               alert("Se pago la factura");
+               window.location.href=global.config.URL;
+            })
+            .catch((errors) => {console.log(errors)});
+            
+        }
+
+    return (
+        <>
+        {data?(<div>
+            <div className="page-content container">
     
     <div className="page-header text-blue-d2">
         <h1 className="page-title text-secondary-d1">
             Invoice
             <small className="page-info">
                 <i className="fa fa-angle-double-right text-80"></i>
-                ID: #111-222
+                ID: {data[0]?._id}
             </small>
         </h1>
 
@@ -30,7 +68,7 @@ const Factura = () => {
             </div>
         </div>
     </div>
-    <PDFExport ref={PDFExportComponent} paperSize="A4">
+    <PDFExport ref={PDFExportComponent}>
     <div className="container px-0">
         <div className="row mt-4">
             <div className="col-12 col-lg-10 offset-lg-1">
@@ -49,8 +87,8 @@ const Factura = () => {
                 <div className="row">
                     <div className="col-sm-6">
                         <div>
-                            <span className="text-sm text-grey-m2 align-middle">Cliente:</span>
-                            <span className="text-600 text-110 text-blue align-middle"> Alex Doe</span>
+                            <span className="text-sm text-grey-m2 align-middle">Cliente: </span>
+                            <span className="text-600 text-110 text-blue align-middle">{data[0]?.nombre} </span>
                         </div>
         
                     </div>
@@ -63,11 +101,11 @@ const Factura = () => {
                                 Factura
                             </div>
 
-                            <div className="my-2"><p className="text-600 text-90">ID: #111-222</p></div>
+                            <div className="my-2"><p className="text-600 text-90">ID: {data[0]?._id}</p></div>
 
-                            <div className="my-2"><p className="text-600 text-90">Fecha: Oct 12, 2019</p></div>
+                            <div className="my-2"><p className="text-600 text-90">Fecha: {data[0]?.invoice.Date}</p></div>
 
-                            <div className="my-2"><p className="text-600 text-90">Estado: Espera</p></div>
+                            <div className="my-2"><p className="text-600 text-90">Estado: {data[0]?.stateOrder.state}</p></div>
                         </div>
                     </div>
                     {/*<!-- /.col -->*/}
@@ -85,10 +123,10 @@ const Factura = () => {
                     <div className="text-95 text-secondary-d3">
                         <div className="row mb-2 mb-sm-0 py-25">
                             <div className="d-none d-sm-block col-1">1</div>
-                            <div className="col-9 col-sm-5">Domain registration</div>
-                            <div className="d-none d-sm-block col-2">2</div>
-                            <div className="d-none d-sm-block col-2 text-95">$10</div>
-                            <div className="col-2 text-secondary-d2">$20</div>
+                            <div className="col-9 col-sm-5">{data[0]?.descripcion}</div>
+                            <div className="d-none d-sm-block col-2">{data[0]?.invoice.amount}</div>
+                            <div className="d-none d-sm-block col-2 text-95">{valor}</div>
+                            <div className="col-2 text-secondary-d2">{data[0]?.invoice.value}</div>
                         </div>
                     </div>
 
@@ -135,7 +173,7 @@ const Factura = () => {
                                     Total 
                                 </div>
                                 <div className="col-5">
-                                    <span className="text-150 text-success-d3 opacity-2">$2,475</span>
+                                    <span className="text-150 text-success-d3 opacity-2">${data[0]?.invoice.value}</span>
                                 </div>
                             </div>
                         </div>
@@ -151,9 +189,13 @@ const Factura = () => {
     </PDFExport>
     <div>
         <span className="text-secondary-d1 text-105">Gracias por contar con nosotros </span>
-        <a href="#" className="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pagar</a>
+        {data[0].stateOrder.state==="Pendiente"?(<button onClick={()=>Pagar(data[0]._id)} className="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pagar</button>):null}
+        
     </div>
 </div>
+        </div>):null}
+    
+</>
     )
 }
 

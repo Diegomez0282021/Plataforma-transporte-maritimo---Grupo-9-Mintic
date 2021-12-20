@@ -29,7 +29,6 @@ export default function Navbar() {
                                 <Link className="dropdown-item" to="/cambiar-estado-orden">Cambiar estado de orden</Link>
                                 <Link className="dropdown-item" to="/ordenes-dia">Ordenes del dia</Link>
                                 <Link className="dropdown-item" to="/registrarUsuarioInterno">Registrar usuario interno</Link>
-                                <Link className="dropdown-item" to="/factura">Factura</Link>
                             </div>
                         </li>
                         

@@ -5,13 +5,15 @@ import { useOrden } from "../../hooks/orden.hook";
 import { useAuth } from "../../hooks/user.hook";
 import { getPort } from "../../services/puerto.services";
 import { getUser} from "../../services/auth.services";
+import { getConfigValue } from './../../services/valorMillas.services';
 
 
 export default function Orden({valorMilla}) {
         
     const [ports, setPorts] = useState();
     const [usuario, setUsuario] = useState(); 
-    const [error,setError]=useState(false)
+    const [error,setError]=useState(false);
+    const [valor,setValor]=useState([])
     const {register,handleSubmit,formState:{errors}} = useForm();
     const Orden = useOrden();
     const auth = useAuth();
@@ -27,6 +29,11 @@ export default function Orden({valorMilla}) {
             console.log(data.item.data,'data.itemss')     
           setUsuario(data.item);   
         });
+        getConfigValue()
+          .then((response) => {
+            setValor(response.data.items);
+          })
+          .catch((errors) => {console.log(errors)});
     }, []);
 
     
@@ -61,6 +68,17 @@ export default function Orden({valorMilla}) {
         return distance;
     }
     const onSubmit = (data,e) =>{
+        let idPortDep=data.ports.idPortDeparture.split(",")
+        let idPortDes=data.ports.idPortDestination.split(",")
+        data.ports.idPortDeparture=idPortDep[0];
+        data.ports.idPortDestination=idPortDes[0];
+        let distancia=getDistanceBetweenPoints(parseFloat(idPortDep[1]),parseFloat(idPortDep[2]),parseFloat(idPortDes[1]),parseFloat(idPortDes[2]))*0.539957;
+        console.log(distancia, typeof distancia)
+        console.log(valor.value, typeof valor)
+        console.log(data.invoice.amount, typeof data.invoice.amount)
+        let valor_total=distancia*valor.value*parseFloat(data.invoice.amount);
+        data.invoice.value=valor_total.toFixed(2);
+
         Orden.post(data, () => {
             window.location.reload();});
             e.target.reset();
@@ -92,7 +110,7 @@ export default function Orden({valorMilla}) {
                           <option value="">-Seleccionar origen-</option>
                           {ports
                             ? ports.map((c) => (
-                             <option value={c._id}>{c.name}</option>
+                             <option value={[c._id,c.latitud,c.longitud]}>{c.name}</option>
                             ))
                             : null}
                         </select>
@@ -104,7 +122,7 @@ export default function Orden({valorMilla}) {
                             <option value="">-Seleccionar origen-</option>
                           {ports
                             ? ports.map((c) => (
-                             <option value={c._id}>{c.name}</option>
+                             <option value={[c._id,c.latitud,c.longitud]}>{c.name}</option>
                             ))
                             : null}
                         </select></div>
