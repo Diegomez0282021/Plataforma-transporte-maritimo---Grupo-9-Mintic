@@ -15,7 +15,6 @@ const RegistrarUsuarioInterno = () => {
           .catch((errors) => {console.log(errors)});
       }, []);
 
-    
       const onSubmit = async (data) =>{
         if (data.password===data.passwordRepeat){
             delete data.passwordRepeat;
