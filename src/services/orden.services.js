@@ -19,6 +19,15 @@ const saveOrden = (data) =>
     };
     return axios.get("http://localhost:3001/api/order", { headers });
 };
+
+const getOrdersDate = () => {
+  const headers = {
+    Authorization: localStorage.token,
+    "Content-Type": "application/json; charset=utf-8",
+  };
+  return axios.get("http://localhost:3001/api/orderDate", { headers });
+};
+
 const getUserId = (idUser) => {
   const headers = {
     Authorization: localStorage.token,
@@ -48,4 +57,4 @@ const deleteOrders = (dato) => {
 };
 
 
-export { getOrders, saveOrden,updateOrders,deleteOrders,getUserId };
+export { getOrders,getOrdersDate, saveOrden,updateOrders,deleteOrders,getUserId };

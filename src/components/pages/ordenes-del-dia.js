@@ -1,7 +1,7 @@
 import React from 'react'
 import DataTable from "react-data-table-component";
 import  { useEffect, useState } from "react";
-import {  getOrders } from "../../services/orden.services";
+import {  getOrdersDate } from "../../services/orden.services";
 import { getUser } from "../../services/user.service";
 import { getPort } from "../../services/puerto.services";
  const explanable= ({data}) =>{
@@ -101,7 +101,7 @@ const columns = [
       }
   ];
   const listProducts = () => {
-    getOrders().then(({ data }) => {
+    getOrdersDate().then(({ data }) => {
       setProducts(data.items);
     });
   };
