@@ -18,15 +18,16 @@ import Factura from './components/pages/Factura';
 
 import Datos from "./services/data.json";
 import { AuthProvider } from "./providers/user.provider";
+import { OrdenProvider } from "./providers/orden.provider";
 import { useAuth } from "./hooks/user.hook";
 import AppLayout from "./components/layouts/app.layout";
-
+ 
 
 function App() {
 
   const [data]=useState(Datos);
   const current=new Date();
-  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 
 function RequireUser({ children }) {
     let auth = useAuth();
@@ -40,14 +41,17 @@ function RequireUser({ children }) {
 
   return (
     <AuthProvider>
+    <OrdenProvider>
+    
     <Router >
       <Fragment>
       <Routes >
       <Route element={<AppLayout />}>
+       
         <Route path='/' element={<Landing/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
-        <Route path='/configurar-valor-milla' element={<ConfigurarValorMilla data={data.valorMilla}/>} />
+        <Route path='/configurar-valor-milla' element={<ConfigurarValorMilla data={data.valorMilla} date={date}/>} />
         <Route path='/ordenes-dia' element={<OrdenesDia datos={data} date={date}/>} />
         <Route path='/aceptar-orden' element={<AceptarOrden/>}/>
         <Route path='/cambiar-estado-orden' element={<CambiaEstado data={data.ordenes}/>}/> 
@@ -57,11 +61,14 @@ function RequireUser({ children }) {
         <Route path="/ingPuerto" element={<Ingresopuerto/>} />
         <Route path="/registrarUsuarioInterno" exact element={<RegistrarUsuarioInterno/>} />
         <Route path="/factura" element={<RequireUser><Factura/></RequireUser>} />
+        
       </Route>
       </Routes>  
       </Fragment>
 
     </Router>
+    
+    </OrdenProvider>
     </AuthProvider>
   );
 }

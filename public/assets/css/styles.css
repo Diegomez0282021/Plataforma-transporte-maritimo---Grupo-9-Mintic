@@ -7,3 +7,9 @@
 #navcol-1{
     justify-content: flex-end;
 }
+
+
+.leaflet-container {
+    width: 80vw;
+    height: 80vh;
+}
