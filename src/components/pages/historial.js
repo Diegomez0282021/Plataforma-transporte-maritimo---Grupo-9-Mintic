@@ -106,9 +106,14 @@ const columns = [
   ];
   const listProducts = () => {
     getOrders().then(({ data }) => {
+      if(auth?.user?.data?.role==="Admin"){
+        setProducts(data.items)
+      }
+      else{
       let datos=data.items;
       let datos_filtrados=datos.filter(e=>e.idUser._id===idUser)
       setProducts(datos_filtrados);
+    }
     });
   };
   useEffect(() => {
