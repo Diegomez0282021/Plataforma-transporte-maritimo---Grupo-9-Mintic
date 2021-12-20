@@ -19,12 +19,22 @@ const saveOrden = (data) =>
     };
     return axios.get("http://localhost:3001/api/order", { headers });
 };
-const getUserId = () => {
+
+const getOrdersDate = () => {
   const headers = {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.get("http://localhost:3001/api/orderByUser/:userID", { headers });
+  return axios.get("http://localhost:3001/api/orderDate", { headers });
+};
+
+const getUserId = (idUser) => {
+  const headers = {
+    Authorization: localStorage.token,
+    "Content-Type": "application/json; charset=utf-8",
+  };
+  console.log(idUser)
+  return axios.get("http://localhost:3001/api/orderByUser/"+ idUser, { headers });
 };
 
 
@@ -67,4 +77,6 @@ const deleteOrders = (dato) => {
 };
 
 
-export { getOrders, saveOrden,updateOrders,updateOrderState,deleteOrders,getUserId,updateStateOrders };
+
+export { getOrders,getOrdersDate, saveOrden,updateOrders,updateOrderState,deleteOrders,getUserId,updateStateOrders };
+

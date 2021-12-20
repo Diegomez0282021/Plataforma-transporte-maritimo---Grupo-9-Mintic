@@ -22,12 +22,14 @@ import { Link } from 'react-router-dom';
             </tr>
           </thead>
           <tbody>
+
                   <tr>
                     <td>{data.invoice.value}</td>
                     <td>{data.invoice.Date}</td>
                     <td>{data.stateOrder.state}</td> 
                     <td>{data.stateOrder.date}</td>
                     <td><Link to={`/Factura/${data._id}`}  >Ver</Link></td>                   
+
                   </tr>
           </tbody>
         </table>
