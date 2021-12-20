@@ -137,7 +137,7 @@ export default function aceptarOrden() {
                 </table>
             </div>
         </section>
-    </div>
+    </>
     )
 }
 */}
