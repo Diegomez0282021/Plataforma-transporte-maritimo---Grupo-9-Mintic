@@ -19,12 +19,13 @@ const saveOrden = (data) =>
     };
     return axios.get("http://localhost:3001/api/order", { headers });
 };
-const getUserId = () => {
+const getUserId = (idUser) => {
   const headers = {
     Authorization: localStorage.token,
     "Content-Type": "application/json; charset=utf-8",
   };
-  return axios.get("http://localhost:3001/api/orderByUser/:userID", { headers });
+  console.log(idUser)
+  return axios.get("http://localhost:3001/api/orderByUser/"+ idUser, { headers });
 };
 
 
