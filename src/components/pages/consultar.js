@@ -13,7 +13,12 @@ export default function Consultar({informacion}) {
           .then((response) => {
             let datos=response.data.items;
             let datos_filtrados=datos.filter(e=>e._id===data.codigo)
-            setDatos(datos_filtrados);
+            if (datos_filtrados.length>0){
+                setDatos(datos_filtrados);
+            }
+            else{
+                alert("Codigo no encontrado")
+            }
             console.log(datos_filtrados)
             
           })
