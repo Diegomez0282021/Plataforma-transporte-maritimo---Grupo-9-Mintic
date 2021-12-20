@@ -27,7 +27,6 @@ const RegistrarUsuarioInterno = () => {
                 const { datos } = await registerUser(data);
                 alert("Registro exitoso");
                 window.location.href=global.config.URL+"login";
-                
             }
             
         }
