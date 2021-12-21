@@ -1,4 +1,4 @@
 module.exports = global.config = {
-    URL: "https:/minticapptransmaritimo.herokuapp.com/",
-    URLAPI: "https:/minticbackentrans.herokuapp.com/"
+    URL: "https://minticapptransmaritimo.herokuapp.com",
+    URLAPI: "https://minticbackentrans.herokuapp.com"
 };
