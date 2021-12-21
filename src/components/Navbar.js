@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth } from "../hooks/user.hook";
-
+import './../config';
 export default function Navbar() {
     const auth = useAuth();
     return (
